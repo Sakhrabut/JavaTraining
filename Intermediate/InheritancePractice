@@ -1,0 +1,69 @@
+package com.intermediate.inheritance.Actors;
+
+public class Actor {
+
+    private String actorName;
+    private int yearOfBirth;
+    private short moviesPlayed;
+
+    private String movieAward;
+    private String nationality;
+
+    public Actor(String actorName, int yearOfBirth, short moviesPlayed, String movieAward, String nationality) {
+        this.actorName = actorName;
+        this.yearOfBirth = yearOfBirth;
+        this.moviesPlayed = moviesPlayed;
+        this.movieAward = movieAward;
+        this.nationality = nationality;
+    }
+
+    public void getInformation() {
+        System.out.println("Actor Name: " + actorName);
+        System.out.println("Born in: " + yearOfBirth);
+        System.out.println("Has played in " + moviesPlayed + " movies");
+        System.out.println("Received award for: " + movieAward);
+        System.out.println("Nationality: " + nationality);
+    }
+}
+
+
+package com.intermediate.inheritance.Actors;
+
+public class MovieActors extends Actor{
+
+    private boolean isStillPlaying;
+    private boolean isMarried;
+
+    public MovieActors(String actorName, int yearOfBirth, short moviesPlayed, String movieAward, String nationality, boolean isStillPlaying, boolean isMarried) {
+        super(actorName, yearOfBirth, moviesPlayed, movieAward, nationality);
+        this.isStillPlaying = isStillPlaying;
+        this.isMarried = isMarried;
+    }
+
+    @Override
+    public void getInformation() {
+        super.getInformation();
+        System.out.println("Still playing: " + isStillPlaying);
+        System.out.println("Marriage status: " + isMarried);
+    }
+}
+
+package com.intermediate.inheritance.Actors;
+
+public class ActorsApp {
+    public static void main(String[] args) {
+        MovieActors keanu = new MovieActors("Keanu Reeves", 1964, (short)55, "The Matrix", "American", true, true );
+        MovieActors reese = new MovieActors("Reese Witherspoon", 1969, (short)90, "Legally Blonde", "American", true, false );
+        MovieActors piersic = new MovieActors("Florin Piersic", 1955, (short)30, "Margelatul", "Romanian", false, false );
+
+        MovieActors[] actors = new MovieActors[3];
+        actors[0] = keanu;
+        actors[1] = reese;
+        actors[2] = piersic;
+
+        for(MovieActors actor : actors){
+            System.out.println("-------------------------------------");
+            actor.getInformation();
+        }
+    }
+}
